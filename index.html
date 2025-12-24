@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input id="recai" placeholder="Enviar pro banco">
+    <button onclick="Enviar()">Enviar</button>
+
+<script>
+    async function Enviar() {
+        const URL = window.location.hostname.includes('localhost')
+        ? 'http://localhost:3000/enviar'
+        : '/enviar';
+
+        await fetch(URL, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ texto: document.getElementById('recai').value })
+        });
+    }
+</script>
+
+</body>
+</html>
